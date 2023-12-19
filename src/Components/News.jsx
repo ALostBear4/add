@@ -25,10 +25,12 @@ const News = (simplified) => {
 
   return (
     <Row gutter={[24, 24]}>
-      {data.value.map((news, i) => (
-        <Col xs={24} sm={12} lg={8} key={i}>
-          <Card hoverable className="news-card">
-            <a href={news.url} target="_blank" rel="noreferrer">
+      {data && data.value && data.value.map((news, i) => (
+  <Col xs={24} sm={12} lg={8} key={i}>
+    {news && ( // Add this check
+      <Card hoverable className="news-card">
+        {/* ... rest of your code ... */
+         <a href={news.url} target="_blank" rel="noreferrer">
               <div className="news-image-container">
                 <Title className="news-title" level={4}>
                   {news.name}
@@ -63,10 +65,12 @@ const News = (simplified) => {
                   {moment(news.datePublished).startOf("ss").fromNow()}
                 </Text>
               </div>
-            </a>
-          </Card>
-        </Col>
-      ))}
+            </a>}
+      </Card>
+    )}
+  </Col>
+))}
+     
     </Row>
   );
 };
